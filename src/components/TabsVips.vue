@@ -153,17 +153,18 @@ export default {
   },
   methods:{
     open() {
-      ElMessageBox.prompt('请输入反馈内容', 'Tip', {
-        confirmButtonText: '反馈',
-        cancelButtonText: '取消',
-        inputErrorMessage: '反馈内容',
-      })
-          .then(({ value }) => {
-            console.log(value);
-          })
-          .catch(() => {
-
-          })
+      ElMessage.warning("还没有做")
+      // ElMessageBox.prompt('请输入反馈内容', 'Tip', {
+      //   confirmButtonText: '反馈',
+      //   cancelButtonText: '取消',
+      //   inputErrorMessage: '反馈内容',
+      // })
+      //     .then(({ value }) => {
+      //       console.log(value);
+      //     })
+      //     .catch(() => {
+      //
+      //     })
     },
     goVideo(){
       if (this.$authorities.includes("VIDEO")){
