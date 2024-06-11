@@ -2,8 +2,8 @@
   <div :class="isDark ? 'darks':''" >
     <div :style="{ height: tabHeight }">
       <tabs-vips @handleSelect="handleSelect" @handleSearch="handleSearch" @toggleDark="toggleDark"  :is-dark="isDark"></tabs-vips>
-    <div class="centers">
-      <div class="slider">
+    <div class="centers" v-if="totalPage > 1">
+      <div class="slider" >
         <el-slider v-model="currentPage" :min="minPage" :max="totalPage" @change="changePage" show-input size="small"/>
       </div>
     </div>
@@ -151,7 +151,13 @@ export default {
     },
     selectItem(id){
       // this.$router.push('/show/'+ id)
+      if (!(this.tableName === 'History')){
+        this.addHistory(id);
+      }
       window.open('/#/show/'+ id);
+    },
+    addHistory(id){
+      axios.get(`${this.$domainUrl}/photo/history/` + id).then(() => {})
     },
     selectStar(i){
       console.log(this.imgList[i].id);
@@ -237,7 +243,7 @@ export default {
       }
       let b = timeStrapCheck(timeStampCheckName);
       this.$getValue(getValueName).then(tableData => {
-          if (tableData == null || b || this.tableName === 'like'){
+          if (tableData == null || b || this.tableName === 'like' || this.tableName === 'History'){
             axios.post(`${this.$domainUrl}/photo`, {
               "tables": this.tableName,
               "search": this.search,

@@ -2,7 +2,7 @@
   <div :class="isDark ? 'darks':''" >
     <div :style="{ height: tabHeight }">
       <tabs-video @handleSelect="handleSelect" @handleSearch="handleSearch" @toggleDark="toggleDark"  :is-dark="isDark"></tabs-video>
-      <div class="centers">
+      <div class="centers" v-if="totalPage > 1">
         <!--      <paglina-tion  :totalCount="totalCount" :currentPage="currentPage" @pageTurning="pageTurning"></paglina-tion>-->
         <div class="slider">
           <el-slider v-model="currentPage" :min="minPage" :max="totalPage" @change="changePage" show-input size="small"/>
@@ -141,8 +141,14 @@ export default {
     },
     selectItem(id) {
       // this.$router.push({name:'/videoshow',query: {id:id,poster:}})
+      if (!(this.tableName === 'History')){
+        this.addHistory(id);
+      }
       window.open(`/#/videoshow/${id}`);
 
+    },
+    addHistory(id){
+      axios.get(`${this.$domainUrl}/video/history/` + id).then(() => {})
     },
     selectStar(i) {
       console.log(this.imgList[i].id);
@@ -162,7 +168,7 @@ export default {
       this.imgList = [];
       let b = timeStrapCheck("Video_Time_" + this.currentPage);
       this.$getValue("Video_" + this.currentPage).then(tableData => {
-            if (tableData == null || b || this.tableName === 'like'){
+            if (tableData == null || b || this.tableName === 'like' || this.tableName === 'History'){
               axios.post(`${this.$domainUrl}/video`, {
                 "tag": this.tableName,
                 "row": this.currentPage
@@ -177,7 +183,7 @@ export default {
                     let date = JSON.stringify(e);
                     this.$setValue("video_" + e.id,date);
                   })
-                  if (this.tableName !== 'like'){
+                  if (this.tableName !== 'like' && this.tableName !== 'History'){
                     this.$setValue("Video_" + this.currentPage,res.data.data)
                     addTimeStrap("Video_Time_" + this.currentPage)
                   }
@@ -260,7 +266,7 @@ export default {
       this.currentPage = 1;
       this.tableName = item;
       localStorage.setItem("superVideoTable",item)
-      this.imgListLoad();
+      // this.imgListLoad();
     },
     //搜索逻辑
     handleSearch(e) {

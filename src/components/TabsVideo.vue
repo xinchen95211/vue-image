@@ -80,8 +80,8 @@ export default {
       drawer: false,
       inputText:'',
       Search:Search,
-      buttonStyle:new Array(2).fill(''),
-      tablesd:[{"id":1,"tablesname":"/","name":"首页"},{"id":2,"tablesname":"like","name":"我喜欢"}],
+      buttonStyle:new Array(3).fill(''),
+      tablesd:[{"id":1,"tablesname":"/","name":"首页"},{"id":2,"tablesname":"like","name":"我喜欢"},{"id":3,"tablesname":"History","name":"历史记录"}],
     }
   },
   created() {

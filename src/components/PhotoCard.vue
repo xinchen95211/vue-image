@@ -27,7 +27,12 @@
                 >
                 </el-image>
                 <div>
+                  <div style="color: rgb(128,128,128);text-align: left;font-size: 15px" v-if="item.time != null">
+                    <span>{{item.time}}</span>
+                  </div>
+
                   <span>{{item.name}}</span>
+
                 </div>
               </div>
             </el-card>
