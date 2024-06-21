@@ -38,7 +38,7 @@ export default {
         title: '', //视频名称
         pageFullScreen: false,
         fullscreen: true,
-        loop:true,
+        loop:false,
         src: "https://api.yujn.cn/api/xjj.php?_t=0",
         controlBtns: ['audioTrack', 'quality', 'speedRate', 'volume', 'setting', 'pip', 'fullScreen'],
         autoPlay: true,
@@ -52,7 +52,7 @@ export default {
         title: '', //视频名称
         pageFullScreen: false,
         fullscreen: true,
-        loop:true,
+        loop:false,
         src: "https://api.yujn.cn/api/xjj.php?_t=0",
         controlBtns: ['audioTrack', 'quality', 'speedRate', 'volume', 'setting', 'pip', 'fullScreen'],
         autoPlay: true,
@@ -113,12 +113,17 @@ export default {
       this.options2.currentTime = 0.567;
       this.options.currentTime = 0.567;
       this.preLoad();
-      // vueVideo.pause();
+      if (vueVideo2.muted || vueVideo.muted){
+        if (this.hides) {
+          vueVideo2.muted = true;
+          vueVideo.muted = false;
+        }else {
+          vueVideo.muted = true;
+          vueVideo2.muted = false;
+        }
+      }
       vueVideo.currentTime = 0;
       vueVideo2.currentTime = 0;
-      // vueVideo2.pause();
-      // vueVideo.play();
-      // vueVideo2.play();
       this.onclicks = false;
     },
     preLoad() {

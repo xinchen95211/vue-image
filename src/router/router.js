@@ -11,6 +11,7 @@ import videoMain from "@/views/VideoMain.vue";
 import Manager from "@/views/ManagerView.vue";
 import RandomVideo from "@/views/RandomVideo.vue";
 import RandomVideoNoSe from "@/views/RandomVideoNoSe.vue";
+import SisterCard from "@/components/SisterCard.vue";
 const router = createRouter({
     history:createWebHashHistory(),
     routes: [
@@ -63,6 +64,11 @@ const router = createRouter({
             //找回密码
             path:"/logout",
             component:logoutView
+        },
+        {
+            //测试
+            path:"/test",
+            component:SisterCard
         }
     ]
 })
