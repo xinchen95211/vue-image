@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://frp-fun.top:49728/$1"
+      "destination": "https://frp-fun.com:49728/$1"
     },
     {
       "source": "/yao/(.*)",
