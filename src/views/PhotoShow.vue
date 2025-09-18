@@ -45,7 +45,7 @@ export default {
       isDark:false,
       items:[],
       domainCount:[],
-      domainList:["https://yaoyao.dynv6.net","https://wanfengbuwan.dynv6.net","https://huifaguang.dynv6.net"],
+      domainList:["https://yaoyao.dynv6.net","https://yaoyao.dynv6.net","https://yaoyao.dynv6.net"],
     }
   },
   created() {
