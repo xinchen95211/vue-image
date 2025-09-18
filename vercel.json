@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://heiqunhui:9999/$1"
+      "destination": "https://heiqunhui.dynv6.net:9999/$1"
     },
     {
       "source": "/yao/(.*)",
