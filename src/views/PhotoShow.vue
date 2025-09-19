@@ -1,8 +1,11 @@
 <template>
-<div :class="isDark ? 'darks':''">
+  <div :class="isDark ? 'darks':''" >
 
-  <el-row :gutter="5" >
-    <div class="centers"><h3>{{nameS}}</h3></div>
+
+      <div class="fixed-header"><h3>{{nameS}}</h3></div>
+
+<div class="container">
+    <el-row :gutter="10" >
       <el-col :xs="24"
               v-for="(item,i) in imgList"
               :key="item"
@@ -24,9 +27,12 @@
           </el-image>
         </div>
       </el-col>
-  </el-row>
+    </el-row>
+</div>
+
 
 </div>
+
 </template>
 
 <script>
@@ -115,13 +121,66 @@ export default {
 </script>
 
 <style scoped>
-.related_box {
-  height:100%;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+  padding-top: 60px; /* 为固定标题留出空间 */
+}
+
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 15px 20px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  z-index: 1000;
   text-align: center;
+  border-bottom: 1px solid #ebeef5;
 }
-.centers{
+.fixed-header h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #409EFF;
+}
+
+.container {
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 30px;
 }
+
+
+
+
+
+
+.related_box {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.related_box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+.el-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .darks{
   color: pink;
   background-color: black;
