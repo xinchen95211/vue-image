@@ -18,14 +18,14 @@
           </el-form-item>
         </el-form>
       </div>
-      <div class="msg">
-        <a style="color: blue" @click="this.$router.push('/retrievePassword')">忘记密码</a>
-      </div>
-      <div class="msg">
-        没有账户?
-        <a style="color: blue" @click="this.$router.push('/register')">注册一个</a>
-      </div>
-      <div @click="noRegister">不想注册请点我</div>
+<!--      <div class="msg">-->
+<!--        <a style="color: blue" @click="this.$router.push('/retrievePassword')">忘记密码</a>-->
+<!--      </div>-->
+<!--      <div class="msg">-->
+<!--        没有账户?-->
+<!--        <a style="color: blue" @click="this.$router.push('/register')">注册一个</a>-->
+<!--      </div>-->
+<!--      <div @click="noRegister">不想注册请点我</div>-->
     </div>
 
 </template>
