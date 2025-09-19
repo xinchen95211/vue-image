@@ -15,7 +15,7 @@ import axios from "axios";
 import router from './router/router.js'
 import localforage from 'localforage';
 import cookies from 'vue-cookies'
-
+//啥也没干更新一下
 
 localforage.config({
     name:'virgo',
