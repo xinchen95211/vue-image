@@ -12,10 +12,9 @@
               element-loading-text="正在拼命加载中..."
               element-loading-svg-view-box="-10, -10, 50, 50"
       >
-        <el-empty :hidden="loading[i] === false" :image="imgList[i-3 < 0 ? 0 : i-3]" image-size="300">
-        </el-empty>
-
         <div class="related_box">
+          <el-empty :hidden="loading[i] === false" :image="imgList[i-3 < 0 ? 0 : i-3]" :image-size=300 >
+          </el-empty>
           <el-image
               :src="item"
               fit="cover"
@@ -24,7 +23,6 @@
               @load="loading[i] = false"
               :initial-index="i"
               @error="errorLoad(i)"
-              lazy
           >
           </el-image>
         </div>
@@ -108,7 +106,7 @@ export default {
       })
 
       for (let i = 0; i < this.imgList.length; i++) {
-        if (i >= 5){
+        if (i >= 3){
          return
         }
         this.loadList[i] = this.imgList[i];
@@ -124,19 +122,20 @@ export default {
     },
     // 滑动到底部加载更多图片
     load(){
+
       if (this.loading[this.loadCount] !== false){
-        console.log(this.loading[this.loadCount])
         return;
       }
+
       this.loadCount += 1;
-      if (this.loadCount > this.imgList.length){
+      if (this.loadCount >= this.imgList.length){
         console.log("到底了" + this.loadCount);
         return;
       }
       this.loadList.push(this.imgList[this.loadCount]);
 
       this.loadCount += 1;
-      if (this.loadCount > this.imgList.length){
+      if (this.loadCount >= this.imgList.length){
         console.log("到底了" + this.loadCount);
         return;
       }
