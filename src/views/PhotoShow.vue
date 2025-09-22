@@ -13,7 +13,7 @@
               element-loading-svg-view-box="-10, -10, 50, 50"
       >
         <div class="related_box">
-          <el-empty :hidden="loading[i] === false" :image="imgList[i-3 < 0 ? 0 : i-3]" :image-size=300 >
+          <el-empty  description=" "  :hidden="loading[i] === false" style="height: 500px" :image-size="300" >
           </el-empty>
           <el-image
               :src="item"
