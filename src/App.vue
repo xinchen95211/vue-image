@@ -15,7 +15,6 @@ const timeStrapCheck = (name) => {
     let parse = JSON.parse(item);
     let time = new Date().toISOString();
      console.log(time)
-    console.log(parse < time)
     return parse < time;
   }
 }

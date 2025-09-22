@@ -10,9 +10,7 @@ export default defineConfig({
     host: '0.0.0.0',
     proxy: {
       '/api': {
-        // target: 'https://frp-hat.top:49728',
-        // target: 'http://192.168.0.187:9999',
-        target: 'http://localhost:9999',
+        target: 'https://heiqunhui.dynv6.net:9998',
         changeOrigin: true,
         secure:false,
         rewrite: (path) => path.replace(/^\/api/, ''),

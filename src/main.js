@@ -15,17 +15,13 @@ import axios from "axios";
 import router from './router/router.js'
 import localforage from 'localforage';
 import cookies from 'vue-cookies'
-//啥也没干更新一下
+
 
 localforage.config({
     name:'virgo',
     version: 1.1 ,
     storeName:'superVirgo'
-});
-
-
-
-
+})
 
 
 let elementApp = createApp(App);
@@ -38,9 +34,9 @@ elementApp.config.globalProperties.$cookies = cookies;
 //域名
 // elementApp.config.globalProperties.$domainUrl = "https://vernelproxy.dynv6.net/proxy/frp-fun.top:49728";
 // elementApp.config.globalProperties.$domainUrl = "http://192.168.0.187:9999"
-elementApp.config.globalProperties.$domainUrl = "/api"
+// elementApp.config.globalProperties.$domainUrl = "/api"
 
- // elementApp.config.globalProperties.$domainUrl = "https://1234560.dynv6.net";
+ elementApp.config.globalProperties.$domainUrl = "https://heiqunhui.dynv6.net:9998";
 
 elementApp.config.globalProperties.$isIndexDbSupport = typeof window.indexedDB !== 'undefined';
 elementApp.config.globalProperties.$isLocalStoragebSupport = typeof window.localStorage !== 'undefined';
@@ -48,6 +44,9 @@ elementApp.config.globalProperties.$isLocalStoragebSupport = typeof window.local
 elementApp.config.globalProperties.$setValue = (key,value) => {localforage.setItem(key, value);}
 elementApp.config.globalProperties.$getValue = (key) => { return localforage.getItem(key)}
 elementApp.config.globalProperties.$deleteAll = () => { localforage.clear()}
+
+
+
 elementApp.config.globalProperties.$authorities = [];
 
 let item = localStorage.getItem("authorities");

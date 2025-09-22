@@ -1,23 +1,25 @@
 <template>
   <div :class="isDark ? 'darks':''" >
-
-
       <div class="fixed-header"><h3>{{nameS}}</h3></div>
-
+    <ul class="infinite-list" v-infinite-scroll="load" style="overflow:auto">
 <div class="container">
+
     <el-row :gutter="10" >
       <el-col :xs="24"
-              v-for="(item,i) in imgList"
+              v-for="(item,i) in loadList"
               :key="item"
               v-loading="loading[i] !== false"
               element-loading-text="正在拼命加载中..."
               element-loading-svg-view-box="-10, -10, 50, 50"
       >
-        <div  class="related_box">
+        <el-empty :hidden="loading[i] === false" style="height: 500px" :image="imgList[0]" image-size="400">
+        </el-empty>
+
+        <div class="related_box">
           <el-image
               :src="item"
               fit="cover"
-              :preview-src-list="imgList"
+              :preview-src-list="loadList"
               class="el-image"
               @load="loading[i] = false"
               :initial-index="i"
@@ -26,11 +28,12 @@
           >
           </el-image>
         </div>
+
       </el-col>
     </el-row>
+
 </div>
-
-
+    </ul>
 </div>
 
 </template>
@@ -52,10 +55,11 @@ export default {
       items:[],
       domainCount:[],
       domainList:["https://yaoyao.dynv6.net","https://yaoyao.dynv6.net","https://yaoyao.dynv6.net"],
+      loadList:[],
+      loadCount:0,
     }
   },
   created() {
-
     let item = localStorage.getItem("isDark");
     this.isDark = (item === "0");
     const html = document.querySelector('html')
@@ -102,7 +106,14 @@ export default {
       parse.forEach(item => {
         this.imgList.push(this.domain + "/" + this.prefix + "/" + this.suffix + '/' + item)
       })
-      this.imgCount = this.imgList.length;
+
+      for (let i = 0; i < this.imgList.length; i++) {
+        if (i >= 5){
+         return
+        }
+        this.loadList[i] = this.imgList[i];
+        this.loadCount = i;
+      }
     },
     errorLoad(i){
       if (this.domainCount[i] >= this.domainList.length){
@@ -110,7 +121,43 @@ export default {
       }
       this.imgList[i] = this.domainList[this.domainCount[i]] + "/" + this.prefix + "/" + this.suffix + '/' + this.items[i]
       this.domainCount[i] = this.domainCount[i]+1
-    }
+    },
+    // 滑动到底部加载更多图片
+    load(){
+      if (this.loading[this.loadCount] !== false){
+        console.log(this.loading[this.loadCount])
+        return;
+      }
+      this.loadCount += 1;
+      if (this.loadCount > this.imgList.length){
+        console.log("到底了" + this.loadCount);
+        return;
+      }
+      this.loadList.push(this.imgList[this.loadCount]);
+
+      this.loadCount += 1;
+      if (this.loadCount > this.imgList.length){
+        console.log("到底了" + this.loadCount);
+        return;
+      }
+      this.loadList.push(this.imgList[this.loadCount]);
+    },
+    preloadNextImages(count) {
+        // if (count >= this.imgList.length) {
+        //   console.log(this.imgList.length)
+        //   return;
+        // }
+        // const img = new Image();
+        // img.src = this.imgList[count]
+        // img.onload = () => {
+        //   this.loadList.push(this.imgList[count]);
+        //   this.preloadNextImages(count + 1);
+        // };
+        // img.onerror = () => {
+        //   this.loadList.push(this.imgList[count]);
+        // }
+
+    },
   },
 
   props:{
@@ -135,6 +182,7 @@ body {
 }
 
 
+
 .fixed-header {
   position: fixed;
   top: 0;
@@ -155,6 +203,7 @@ body {
 }
 
 .container {
+  overflow:auto;
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px;
@@ -167,18 +216,11 @@ body {
 
 .related_box {
   border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
 }
-.related_box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-.el-image {
+.related_box .el-image {
   width: 100%;
   height: 100%;
-  display: block;
 }
 
 .darks{
