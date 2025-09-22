@@ -12,7 +12,7 @@
               element-loading-text="正在拼命加载中..."
               element-loading-svg-view-box="-10, -10, 50, 50"
       >
-        <el-empty :hidden="loading[i] === false" style="height: 500px" :image="imgList[0]" image-size="400">
+        <el-empty :hidden="loading[i] === false" :image="imgList[0]" image-size="300">
         </el-empty>
 
         <div class="related_box">
