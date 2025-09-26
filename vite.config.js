@@ -26,7 +26,7 @@ export default defineConfig({
       '/wan': {
         // target: 'https://frp-hat.top:49728',
         // target: 'http://192.168.0.187:9999',
-        target: ' https://wanfengbuwan.dynv6.net',
+        target: ' https://heiqunhui.dynv6.net:1223',
         changeOrigin: true,
         secure:false,
         rewrite: (path) => path.replace(/^\/wan/, ''),

@@ -19,7 +19,7 @@
               </div>
               <div  class="related_box"  @click="selectItem(item.id)">
                 <el-image
-                    :src="item.domain + '/' + item.prefix + '/' + item.suffix + '/' + item.thumbnail"
+                    :src="domainList[Math.floor(Math.random() * (domainList.length))] + '/' + item.prefix + '/' + item.suffix + '/' + item.thumbnail"
                     fit="cover"
                     class="el-image"
                     @load="successLoad(i)"
@@ -59,7 +59,7 @@ export default {
       loading:[],
       random:1,
       domainCount:[],
-      domainList:["https://yaoyao.dynv6.net","https://yaoyao.dynv6.net","https://yaoyao.dynv6.net"]
+      domainList:["https://yaoyao.dynv6.net","https://yaoyao.dynv6.net","https://heiqunhui.dynv6.net:1223"]
     }
   },
   created() {

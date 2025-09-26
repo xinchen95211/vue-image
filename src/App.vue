@@ -5,7 +5,7 @@
 <script>
 
 import axios from "axios";
-import localforage from "localforage";
+
 import {ElMessage, ElMessageBox} from "element-plus";
 const timeStrapCheck = (name) => {
   let item = localStorage.getItem(name);

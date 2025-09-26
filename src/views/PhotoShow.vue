@@ -20,7 +20,7 @@
               fit="cover"
               :preview-src-list="loadList"
               class="el-image"
-              @load="loading[i] = false"
+              @load="loadExit(i)"
               :initial-index="i"
               @error="errorLoad(i)"
           >
@@ -36,8 +36,10 @@
 
 </template>
 
-<script>
+<script >
+
 import axios from "axios";
+
 export default {
   name: "PhotoShow",
   data(){
@@ -52,7 +54,7 @@ export default {
       isDark:false,
       items:[],
       domainCount:[],
-      domainList:["https://yaoyao.dynv6.net","https://yaoyao.dynv6.net","https://yaoyao.dynv6.net"],
+      domainList:["https://yaoyao.dynv6.net","https://heiqunhui.dynv6.net:1223","https://yaoyao.dynv6.net"],
       loadList:[],
       loadCount:0,
     }
@@ -98,11 +100,12 @@ export default {
       this.prefix = resf.prefix;
       this.suffix = resf.suffix;
       this.domain = resf.domain;
+      // this.domain = this.domainList[Math.floor(Math.random() * (this.domainList.length-1)+1)];
       let parse = JSON.parse(resf.collection);
       this.items = parse;
       this.domainCount = new Array(parse.length).fill(0);
       parse.forEach(item => {
-        this.imgList.push(this.domain + "/" + this.prefix + "/" + this.suffix + '/' + item)
+        this.imgList.push(this.domainList[Math.floor(Math.random() * (this.domainList.length))] + "/" + this.prefix + "/" + this.suffix + '/' + item)
       })
 
       for (let i = 0; i < this.imgList.length; i++) {
@@ -122,11 +125,9 @@ export default {
     },
     // 滑动到底部加载更多图片
     load(){
-
       if (this.loading[this.loadCount] !== false){
         return;
       }
-
       this.loadCount += 1;
       if (this.loadCount >= this.imgList.length){
         console.log("到底了" + this.loadCount);
@@ -141,20 +142,13 @@ export default {
       }
       this.loadList.push(this.imgList[this.loadCount]);
     },
+    loadExit(count){
+      setTimeout(() => {
+        this.loading[count] = false
+      }, 1000)
+    },
     preloadNextImages(count) {
-        // if (count >= this.imgList.length) {
-        //   console.log(this.imgList.length)
-        //   return;
-        // }
-        // const img = new Image();
-        // img.src = this.imgList[count]
-        // img.onload = () => {
-        //   this.loadList.push(this.imgList[count]);
-        //   this.preloadNextImages(count + 1);
-        // };
-        // img.onerror = () => {
-        //   this.loadList.push(this.imgList[count]);
-        // }
+
 
     },
   },

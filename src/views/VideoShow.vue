@@ -69,8 +69,9 @@ export default {
       let data = JSON.parse(res);
       this.domainList = data.domainList;
       this.videoURI = data.videoUri;
-      this.options.src = data.domain + data.videoUri;
-      this.poster = data.domain + '/' + data.prefix + '/' +data.suffix + '/' +data.thumbnail;
+      this.options.src = this.domainList[Math.floor(Math.random() * (this.domainList.length))] + data.videoUri;
+      // this.poster = data.domain + '/' + data.prefix + '/' +data.suffix + '/' +data.thumbnail;
+      this.poster = this.domainList[Math.floor(Math.random() * (this.domainList.length))] + '/' + data.prefix + '/' +data.suffix + '/' +data.thumbnail;
     },
     // selectStar(id){
     //   axios.get("api/video/like/" + id).then(e => {

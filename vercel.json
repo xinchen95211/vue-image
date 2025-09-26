@@ -11,11 +11,14 @@
     },
     {
       "source": "/wan/(.*)",
-      "destination": "https://wanfengbuwan.dynv6.net/$1"
+      "destination": "https://heiqunhui.dynv6.net:1223/$1"
     },
     {
       "source": "/hui/(.*)",
       "destination": "https://huifaguang.dynv6.net/$1"
     }
+
+
+
   ]
 }

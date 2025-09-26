@@ -24,12 +24,38 @@ localforage.config({
 })
 
 
+
+
 let elementApp = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     elementApp.component(key, component)
 }
 elementApp.config.globalProperties.$localforage = localforage;
 elementApp.config.globalProperties.$cookies = cookies;
+
+
+// 照片临时存储库
+let PhotoTemp = localforage.createInstance({
+    name:'PhotoTemp',
+    version: 1.0 ,
+    storeName:'PhotoTemp'
+});
+elementApp.config.globalProperties.$PhotoTempsetValue = (key,value) => {PhotoTemp.setItem(key, value);}
+elementApp.config.globalProperties.$PhotoTempgetValue = (key) => { return PhotoTemp.getItem(key)}
+elementApp.config.globalProperties.$PhotoTempdeleteAll = () => { PhotoTemp.clear()}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //域名
 // elementApp.config.globalProperties.$domainUrl = "https://vernelproxy.dynv6.net/proxy/frp-fun.top:49728";
